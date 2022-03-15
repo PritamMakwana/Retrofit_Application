@@ -1,13 +1,17 @@
-package com.example.retrofitapplication;
+package com.example.retrofitapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.text.Layout;
-import android.widget.Adapter;
 import android.widget.Toast;
+
+import com.example.retrofitapplication.R;
+import com.example.retrofitapplication.adapter.AdapterUser;
+import com.example.retrofitapplication.adapter.RetrofitClientInsert;
+import com.example.retrofitapplication.api.Api;
+import com.example.retrofitapplication.model.UserModel;
 
 import java.util.List;
 
@@ -17,8 +21,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AdapterUser adapterUser;
-    private RecyclerView rv ;
+    private AdapterUser mUserAdapter;
+    private RecyclerView mViewRecycler;
 
 
     @Override
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rv = findViewById(R.id.Home_rv);
+        mViewRecycler = findViewById(R.id.Home_rv);
 
         Api api = RetrofitClientInsert.getRetrofitUsers().create(Api.class);
 
@@ -50,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void getDataOnuser(List<UserModel> body) {
 
-        adapterUser = new AdapterUser(body,MainActivity.this);
+        mUserAdapter = new AdapterUser(body,MainActivity.this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rv.setLayoutManager(layoutManager);
-        rv.setAdapter(adapterUser);
+        mViewRecycler.setLayoutManager(layoutManager);
+        mViewRecycler.setAdapter(mUserAdapter);
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.retrofitapplication;
+package com.example.retrofitapplication.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,15 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofitapplication.R;
+import com.example.retrofitapplication.model.UserModel;
+
 import java.util.List;
 
 public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserViewHolder> {
-    private List<UserModel> userModels;
-    Context context;
+    private List<UserModel> mUserModels;
+    Context mContext;
 
-    public AdapterUser(List<UserModel> userModels, Context context) {
-        this.userModels = userModels;
-        this.context = context;
+    public AdapterUser(List<UserModel> mUserModels, Context mContext) {
+        this.mUserModels = mUserModels;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -31,10 +34,10 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        holder.title.setText("Title :"+userModels.get(position).getTitle());
-        holder.uid.setText("User Id : "+userModels.get(position).getUid());
-        holder.id.setText(" Id : "+userModels.get(position).getId());
-        if (userModels.get(position).getCompleted() == "true"){
+        holder.title.setText("Title :"+ mUserModels.get(position).getmTitle());
+        holder.uid.setText("User Id : "+ mUserModels.get(position).getmUserid());
+        holder.id.setText(" Id : "+ mUserModels.get(position).getmId());
+        if (mUserModels.get(position).getmCompleted() == "true"){
             holder.com.setImageResource(R.drawable.true_);
         }else{
             holder.com.setImageResource(R.drawable.false_);
@@ -46,7 +49,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserViewHolder
 
     @Override
     public int getItemCount() {
-        return userModels.size();
+        return mUserModels.size();
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {

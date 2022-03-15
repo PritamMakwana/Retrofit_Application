@@ -1,4 +1,6 @@
-package com.example.retrofitapplication;
+package com.example.retrofitapplication.api;
+
+import com.example.retrofitapplication.model.UserModel;
 
 import java.util.List;
 
